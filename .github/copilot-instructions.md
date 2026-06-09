@@ -24,6 +24,10 @@ To be completed as project development progresses.
 
 To be completed as project development progresses.
 
+## Security and Dependency Management
+
+To be completed as project development progresses.
+
 ## Development Guidelines
 
 Keep changes scoped to existing files unless a task explicitly requires scaffolding project code.
