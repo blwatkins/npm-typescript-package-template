@@ -1,15 +1,53 @@
 # Copilot Instructions
 
+## Project Overview
+
+To be completed as project development progresses.
+
+## Tech Stack
+
+To be completed as project development progresses.
+
+## Development and Validation
+
+To be completed as project development progresses.
+
+### Development Status
+
+To be completed as project development progresses.
+
+## npm Scripts
+
+To be completed as project development progresses.
+
+## GitHub Actions CI
+
+To be completed as project development progresses.
+
 ## Development Guidelines
 
-### Current Repository State
-- This branch currently contains repository configuration and documentation files only.
-- There is no `package.json`, `src/`, or `docs/portfolio-skills.md` in the current branch state.
-- Keep changes scoped to existing files unless a task explicitly requires scaffolding project code.
+Keep changes scoped to existing files unless a task explicitly requires scaffolding project code.
 
-### Code Style Preferences and Conventions
+### TypeScript Conventions
+
+To be completed as project development progresses.
+
+#### Static Classes
+
+Static utility classes must:
+- Have a `private constructor()` that throws an `Error` to prevent instantiation
+- Include a JSDoc `@throws` on the constructor documenting the instantiation error
+- Expose public static getters or methods only
+
+## Code Style
+
+#### Code Style Preferences and Conventions
 - Prefer `if`/`else` blocks over ternary operators for conditional logic.
 - Prefer `@returns` (not `@return`) in TSDoc comments.
+
+#### Formatting Rules
+
+To be completed as project development progresses.
 
 ### Documentation Comment Preferences
 
@@ -54,6 +92,36 @@ Place annotations in the following order for consistency and readability:
 1. `@category`
 
 Include other relevant tags (such as `@template`, `@type`) after the above, as appropriate for the context.
+
+### File Headers
+
+All source files must include the MIT License copyright header at the top:
+
+```typescript
+/*
+ * Copyright (c) <year> Brittni Watkins.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom
+ * the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+```
+
+## Directory Structure
+
+To be completed as project development progresses.
 
 ## Documentation and GitHub Pages
 
