@@ -2,6 +2,11 @@
 
 ## Development Guidelines
 
+### Current Repository State
+- This branch currently contains repository configuration and documentation files only.
+- There is no `package.json`, `src/`, or `docs/portfolio-skills.md` in the current branch state.
+- Keep changes scoped to existing files unless a task explicitly requires scaffolding project code.
+
 ### Code Style Preferences and Conventions
 - Prefer `if`/`else` blocks over ternary operators for conditional logic.
 - Prefer `@returns` (not `@return`) in TSDoc comments.
@@ -53,6 +58,8 @@ Include other relevant tags (such as `@template`, `@type`) after the above, as a
 ## Documentation and GitHub Pages
 
 ### Portfolio Page Generation
+
+The guidance in this section applies only when `docs/portfolio-skills.md` is present or intentionally being created.
 
 Use the following prompt template when generating or updating the `docs/portfolio-skills.md` page — for example, when a new project is started, when key dependencies or tooling change, or when the project's capabilities, functionality, or implementation evolve.
 
