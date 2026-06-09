@@ -12,15 +12,15 @@ To be completed as project development progresses.
 
 To be completed as project development progresses.
 
+### Development Status
+
+To be completed as project development progresses.
+
 ### Template Link Verification During Review
 
 As part of pull request review, verify that repository and package links (for example in `README.md`, `package.json`, or other project metadata) match the current repository/project being worked on.
 
 When this template is used to create a new repository, reviewers should explicitly confirm that inherited links have been updated to the new repository and package coordinates.
-
-### Development Status
-
-To be completed as project development progresses.
 
 ## npm Scripts
 
