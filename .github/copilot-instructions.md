@@ -10,9 +10,11 @@ To be completed as project development progresses.
 
 ## Development and Validation
 
+### Development Status
+
 To be completed as project development progresses.
 
-### Development Status
+### Validation Steps
 
 To be completed as project development progresses.
 
@@ -136,16 +138,18 @@ To be completed as project development progresses.
 
 ## Documentation and GitHub Pages
 
-### Portfolio Page Generation
+- `README.md` and `docs/index.md` (if present) should stay in sync for shared content, but they are not expected to be identical. Expected differences include Jekyll front matter, file-specific introductory or heading sections, footer or copyright text, and internal link differences. Any addition, removal, or update to shared sections must be applied consistently to both files.
+
+## Portfolio Page Generation and Maintenance
 
 The guidance in this section applies only when `docs/portfolio-skills.md` is present or intentionally being created.
 
 Use the following prompt template when generating or updating the `docs/portfolio-skills.md` page — for example, when a new project is started, when key dependencies or tooling change, or when the project's capabilities, functionality, or implementation evolve.
 
-#### Prompt Template
+### Prompt Template
 
 ````markdown
-You are generating a technical portfolio page documenting a software project, template, starter, or implementation, following a specific evidence-based structure.
+You are generating/updating a technical portfolio page documenting a software project, template, starter, or implementation, following a specific evidence-based structure.
 
 ## Context
 
@@ -281,7 +285,7 @@ Return the complete Markdown file ready to save as `docs/portfolio-skills.md` an
 - If prior claims cannot be supported by current evidence, rewrite or remove them
 ````
 
-#### How to Use This Template
+### How to Use This Template
 
 1. **Customize the bracketed fields** at the top with your project's info:
    - `[PROJECT_NAME]` → actual name
@@ -313,7 +317,7 @@ Return the complete Markdown file ready to save as `docs/portfolio-skills.md` an
    - Ask Copilot to split mixed inventory categories into more precise labels
    - Ask Copilot to add stronger evidence links where claims are currently under-supported
 
-#### Example Customization
+### Example Customization
 
 If you were documenting a new project called `my-ml-starter`:
 
