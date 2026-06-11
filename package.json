@@ -39,5 +39,11 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "tsdown": "^0.22.2",
+    "typedoc": "^0.28.19",
+    "typescript": "^6.0.3"
   }
 }
