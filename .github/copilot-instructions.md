@@ -141,6 +141,10 @@ To be completed as project development progresses.
 
 - `README.md` and `docs/index.md` (if present) should stay in sync for shared content, but they are not expected to be identical. Expected differences include Jekyll front matter, file-specific introductory or heading sections, footer or copyright text, and internal link differences. Any addition, removal, or update to shared sections must be applied consistently to both files.
 
+### TypeDoc Configuration
+
+TypeDoc entry points are intentionally pointed to module-level index files (e.g., `./src/hello-world/index.ts`) rather than the root package entry point (e.g., `./src/index.ts`). This is done purposefully to maintain module-level organization in the generated documentation output. Do not change TypeDoc entry points to the root package entry point.
+
 ## Portfolio Page Generation and Maintenance
 
 The guidance in this section applies only when `docs/portfolio-skills.md` is present or intentionally being created.
