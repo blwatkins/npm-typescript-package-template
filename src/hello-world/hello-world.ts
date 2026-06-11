@@ -20,6 +20,8 @@
 
 /**
  * An example class export.
+ *
+ * @since 1.0.0
  */
 export class HelloWorld {
     /**
