@@ -8,3 +8,9 @@
 
 # Node.js and npm
 node_modules/
+
+# Compiling, bundling, testing, and coverage output
+_compiled/
+_coverage/
+_dist/
+_doc/
