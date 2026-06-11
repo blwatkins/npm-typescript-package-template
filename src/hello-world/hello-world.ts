@@ -27,7 +27,8 @@ export class HelloWorld {
     /**
      * An example method.
      *
-     * @return {void}
+     * @returns {void}
+     * @since 1.0.0
      */
     public hello(): void {
         console.log('Hello, World!');
