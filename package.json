@@ -1,5 +1,5 @@
 {
-  "name": "npm-typescript-package-template",
+  "name": "@blwat/template",
   "version": "1.0.0",
   "license": "MIT",
   "private": false,
@@ -8,7 +8,7 @@
     "name": "Brittni Watkins",
     "url": "https://blwatkins.github.io/"
   },
-  "homepage": "https://github.com/blwatkins/npm-typescript-package-template#readme",
+  "homepage": "https://blwatkins.github.io/npm-typescript-package-template/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blwatkins/npm-typescript-package-template.git"
