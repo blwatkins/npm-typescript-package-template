@@ -1,0 +1,50 @@
+{
+  "name": "@blwat/template",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": false,
+  "description": "A template project for creating a TypeScript package for npm.",
+  "author": {
+    "name": "Brittni Watkins",
+    "url": "https://blwatkins.github.io/"
+  },
+  "homepage": "https://blwatkins.github.io/npm-typescript-package-template/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blwatkins/npm-typescript-package-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/blwatkins/npm-typescript-package-template/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": "^22.22.0 || >=24"
+  },
+  "types": "./_dist/index.d.mts",
+  "module": "./_dist/index.mjs",
+  "main": "./_dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./_dist/index.d.mts",
+      "default": "./_dist/index.mjs"
+    }
+  },
+  "files": [
+    "./_dist",
+    "./LICENSE",
+    "./package.json",
+    "./README.md"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "typedoc",
+    "build": "tsdown",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "tsdown": "^0.22.2",
+    "typedoc": "^0.28.19",
+    "typescript": "^6.0.3"
+  }
+}
