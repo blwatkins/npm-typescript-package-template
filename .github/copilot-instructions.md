@@ -44,6 +44,10 @@ Keep changes scoped to existing files unless a task explicitly requires scaffold
 
 To be completed as project development progresses.
 
+#### tsdown Build Output
+
+This project uses `tsdown` to bundle and emit declaration files. When the output format is `esm`, tsdown emits format-specific file extensions: `.mjs` for the bundle and `.d.mts` for the declaration file, regardless of whether the source files use the `.ts` or `.mts` extension. The `types`, `module`, `main`, and `exports` fields in `package.json` should always reference these `.mjs`/`.d.mts` paths (e.g., `./_dist/index.mjs` and `./_dist/index.d.mts`).
+
 #### Static Classes
 
 Static utility classes must:
