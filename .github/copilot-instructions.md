@@ -81,7 +81,8 @@ Static utility classes must:
 
 #### Formatting Rules
 
-To be completed as project development progresses.
+- Keep formatting compatible with the repository ESLint configurations in `eslint.config.js.mjs` and `eslint.config.ts.mjs`.
+- Do not introduce formatting-only tooling or workflow changes unless the task explicitly requires them.
 
 ### Documentation Comment Preferences
 
