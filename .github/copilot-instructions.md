@@ -46,8 +46,8 @@ When this template is used to create a new repository, reviewers should explicit
 
 ## GitHub Actions CI
 
-- **`npm-build.yml`**: Triggered on push and pull request to `main`, and manually via `workflow_dispatch`. Runs `npm ci` and `npm run build` on Node.js 22.22.x and 24.x.
-- **`npm-publish.yml`**: Manually triggered via `workflow_dispatch` with a required `release_tag` input. Builds the package on Node.js 24.x, then publishes to npm with the specified tag.
+- **`npm-test.yml`**: Triggered on push and pull request to `main`, and manually via `workflow_dispatch`. Runs `npm ci`, `npm run lint:all`, `npm run build`, and `npm run test` on Node.js 22.22.x and 24.x.
+- **`npm-publish.yml`**: Manually triggered via `workflow_dispatch` with a required `release_tag` input. Runs lint, build, and test on Node.js 24.x, then publishes to npm with the specified tag.
 
 ## Security and Dependency Management
 
