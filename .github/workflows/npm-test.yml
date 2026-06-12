@@ -1,4 +1,4 @@
-name: npm Build
+name: npm Lint, Build, and Test
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
       - "main"
 
 jobs:
-  build:
+  test:
     permissions:
       contents: read
 
@@ -31,3 +31,4 @@ jobs:
       - run: npm ci
       - run: npm run lint:all
       - run: npm run build
+      - run: npm run test
