@@ -59,7 +59,7 @@ The full text of the license is included with the project source code.
 ![Deploy GitHub Pages with Jekyll](https://github.com/blwatkins/npm-typescript-package-template/actions/workflows/gh-pages-jekyll.yml/badge.svg)
 
 ## Sources and Technical Notes
-Coming soon.
+- [Demonstrated Portfolio Skills](./portfolio-skills.md)
 
 ## Thank Yous
 A huge thank you to all the open source contributors who have made this project possible by creating and maintaining the libraries and tools used in this project, and to the open source community for fostering collaboration and innovation.
