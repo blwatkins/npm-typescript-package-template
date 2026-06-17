@@ -3,6 +3,7 @@ A template project for creating a [TypeScript](https://www.typescriptlang.org/) 
 
 ## Documentation
 - [Sample Documentation](https://blwatkins.github.io/npm-typescript-package-template/doc/index.html)
+- [Sample Releases](https://blwatkins.github.io/npm-typescript-package-template/doc/releases.html)
 
 ## License
 The source code of this project is licensed under the [MIT License](https://opensource.org/license/mit).
