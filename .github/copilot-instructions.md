@@ -3,6 +3,11 @@
 ## Project Overview
 A template repository for creating TypeScript packages published to npm. Provides an example source structure, build tooling, documentation generation, and GitHub automation for builds, publishing, dependency updates, and security scanning.
 
+## Companion Instruction Files
+This repository maintains a companion `CLAUDE.md` at the repository root alongside this file.
+The two documents serve overlapping audiences and should stay consistent: when you update guidance in `.github/copilot-instructions.md` that also applies to `CLAUDE.md`, mirror the change there, and vice versa.
+`CLAUDE.md` is intentionally a concise pointer to this file; this file remains the canonical, detailed source of conventions.
+
 ## Tech Stack
 - **Language:** TypeScript (targeting ES2022)
 - **Runtime:** Node.js (^22.22.0 || >=24)
@@ -39,12 +44,13 @@ When this template is used to create a new repository, reviewers should explicit
 - `prepack`: Automatically runs `npm run build` before packing.
 
 ## GitHub Actions CI
-- **`npm-test.yml`**: Triggered on push and pull request to `main`, and manually via `workflow_dispatch`. Runs `npm ci`, `npm run lint:all`, `npm run build`, and `npm run test` on Node.js 22.22.x and 24.x.
+- **`npm-test.yml`**: Triggered on push and pull request to `main` and `release/**` branches, and manually via `workflow_dispatch`. Runs `npm ci`, `npm run lint:all`, `npm run build`, and `npm run test` on Node.js 22.22.x and 24.x.
 - **`npm-publish.yml`**: Manually triggered via `workflow_dispatch` with a required `release_tag` input. Runs lint, build, and test on Node.js 24.x, then publishes to npm with the specified tag.
+- **`gh-pages-jekyll.yml`**: Builds the Jekyll site in `docs/` and deploys it to GitHub Pages. Triggered on push to `main` and manually via `workflow_dispatch`.
 
 ## Security and Dependency Management
-- **CodeQL**: Configured via `.github/workflows/codeql.yml` for automated security analysis.
-- **Dependabot**: Configured via `.github/dependabot.yml` for monthly npm and GitHub Actions dependency updates, targeting the `main` branch.
+- **CodeQL**: Configured via `.github/workflows/codeql.yml` for automated security analysis. Analyzes the `actions`, `javascript-typescript`, and `ruby` languages, and runs on push and pull request to `main` and `release/**` branches, on a monthly schedule, and manually via `workflow_dispatch`.
+- **Dependabot**: Configured via `.github/dependabot.yml` for monthly dependency updates targeting the `main` branch, covering the npm, GitHub Actions, and Bundler ecosystems.
 
 ## Development Guidelines
 Keep changes scoped to existing files unless a task explicitly requires scaffolding project code.
