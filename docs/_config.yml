@@ -38,7 +38,7 @@ minima:
   nav_pages:
     - index.md
 
-title: "npm TypeScript Package Template, by Brittni Watkins"
+title: "npm TypeScript Package Template"
 description: "A template project for creating a TypeScript package for npm."
 show_downloads: true
 
