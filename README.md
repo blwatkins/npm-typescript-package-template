@@ -3,7 +3,7 @@ A template project for creating a [TypeScript](https://www.typescriptlang.org/) 
 
 ## Documentation
 - [Sample Documentation](https://blwatkins.github.io/npm-typescript-package-template/doc/index.html)
-- [Sample Releases](https://blwatkins.github.io/npm-typescript-package-template/doc/releases.html)
+- [Sample Releases](https://blwatkins.github.io/npm-typescript-package-template/releases.html)
 
 ## License
 The source code of this project is licensed under the [MIT License](https://opensource.org/license/mit).
@@ -54,7 +54,7 @@ The full text of the license is included with the project source code.
 ![Deploy GitHub Pages with Jekyll](https://github.com/blwatkins/npm-typescript-package-template/actions/workflows/gh-pages-jekyll.yml/badge.svg)
 
 ## Sources and Technical Notes
-Coming soon.
+- [Demonstrated Portfolio Skills](https://blwatkins.github.io/npm-typescript-package-template/portfolio-skills.html)
 
 ## Thank Yous
 A huge thank you to all the open source contributors who have made this project possible by creating and maintaining the libraries and tools used in this template, and to the open source community for fostering collaboration and innovation.
