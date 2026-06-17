@@ -1,0 +1,65 @@
+{
+  "name": "@blwat/template",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": false,
+  "description": "A template project for creating a TypeScript package for npm.",
+  "author": {
+    "name": "Brittni Watkins",
+    "url": "https://blwatkins.github.io/"
+  },
+  "homepage": "https://blwatkins.github.io/npm-typescript-package-template/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blwatkins/npm-typescript-package-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/blwatkins/npm-typescript-package-template/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": "^22.22.0 || >=24"
+  },
+  "types": "./_dist/index.d.mts",
+  "module": "./_dist/index.mjs",
+  "main": "./_dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./_dist/index.d.mts",
+      "default": "./_dist/index.mjs"
+    }
+  },
+  "files": [
+    "./_dist",
+    "./LICENSE",
+    "./package.json",
+    "./README.md"
+  ],
+  "scripts": {
+    "lint:js": "eslint -c eslint.config.js.mjs .",
+    "lint:ts": "eslint -c eslint.config.ts.mjs .",
+    "lint:all": "npm run lint:js && npm run lint:ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "docs": "typedoc",
+    "build": "tsdown",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^25.9.3",
+    "@vitest/coverage-v8": "^4.1.8",
+    "@vitest/ui": "^4.1.8",
+    "eslint": "^10.5.0",
+    "eslint-plugin-es-x": "^9.6.0",
+    "globals": "^17.6.0",
+    "tsdown": "^0.22.2",
+    "typedoc": "^0.28.19",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.0",
+    "vitest": "^4.1.8"
+  }
+}

@@ -1,9 +1,14 @@
-# npm TypeScript Package Template
+---
+title: "npm TypeScript Package Template"
+layout: page
+---
+
+## About This Project
 A template project for creating a [TypeScript](https://www.typescriptlang.org/) package for [npm](https://www.npmjs.com/).
 
 ## Documentation
-- [Sample Documentation](https://blwatkins.github.io/npm-typescript-package-template/doc/index.html)
-- [Sample Releases](https://blwatkins.github.io/npm-typescript-package-template/releases.html)
+- [Sample Documentation](./doc/index.html)
+- [Sample Releases](./releases.md)
 
 ## License
 The source code of this project is licensed under the [MIT License](https://opensource.org/license/mit).
@@ -54,14 +59,10 @@ The full text of the license is included with the project source code.
 ![Deploy GitHub Pages with Jekyll](https://github.com/blwatkins/npm-typescript-package-template/actions/workflows/gh-pages-jekyll.yml/badge.svg)
 
 ## Sources and Technical Notes
-- [Demonstrated Portfolio Skills](https://blwatkins.github.io/npm-typescript-package-template/portfolio-skills.html)
+- [Demonstrated Portfolio Skills](./portfolio-skills.md)
 
 ## Thank Yous
-A huge thank you to all the open source contributors who have made this project possible by creating and maintaining the libraries and tools used in this template, and to the open source community for fostering collaboration and innovation.
+A huge thank you to all the open source contributors who have made this project possible by creating and maintaining the libraries and tools used in this project, and to the open source community for fostering collaboration and innovation.
 
-A special thank you to all the educators, mentors, and content creators who have shared their knowledge and expertise in the fields of algorithmic art, web development, and computer science.
+A special thank you to all the educators, mentors, and content creators who have shared their knowledge and expertise in the fields of web development and computer science.
 Thank you for giving me the tools, resources, opportunities, support, and inspiration to learn and grow as a developer.
-
-----
-
-Copyright &copy; 2024-2026 Brittni Watkins.
