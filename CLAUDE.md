@@ -1,5 +1,4 @@
 # CLAUDE.md
-
 Guidance for Claude Code (and other AI assistants) when working in this repository.
 
 ## Canonical Instructions
