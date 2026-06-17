@@ -1,6 +1,9 @@
 # npm TypeScript Package Template
 A template project for creating a [TypeScript](https://www.typescriptlang.org/) package for [npm](https://www.npmjs.com/).
 
+## Documentation
+- [Sample Documentation](https://blwatkins.github.io/npm-typescript-package-template/doc/index.html)
+
 ## License
 The source code of this project is licensed under the [MIT License](https://opensource.org/license/mit).
 The full text of the license is included with the project source code.
