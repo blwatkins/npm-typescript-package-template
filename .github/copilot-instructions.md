@@ -1,11 +1,14 @@
 # Copilot Instructions
 
 ## Project Overview
-
 A template repository for creating TypeScript packages published to npm. Provides an example source structure, build tooling, documentation generation, and GitHub automation for builds, publishing, dependency updates, and security scanning.
 
-## Tech Stack
+## Companion Instruction Files
+This repository maintains a companion `CLAUDE.md` at the repository root alongside this file.
+The two documents serve overlapping audiences and should stay consistent: when you update guidance in `.github/copilot-instructions.md` that also applies to `CLAUDE.md`, mirror the change there, and vice versa.
+`CLAUDE.md` is intentionally a concise pointer to this file; this file remains the canonical, detailed source of conventions.
 
+## Tech Stack
 - **Language:** TypeScript (targeting ES2022)
 - **Runtime:** Node.js (^22.22.0 || >=24)
 - **Package manager:** npm
@@ -16,23 +19,19 @@ A template repository for creating TypeScript packages published to npm. Provide
 ## Development and Validation
 
 ### Development Status
-
 Initial template scaffolding is complete. The project includes an example `HelloWorld` class export (`src/hello-world/`), TypeScript and build tooling configuration, a Vitest test suite, TypeDoc documentation generation, and GitHub automation workflows for builds, publishing, and security.
 
 ### Validation Steps
-
 1. Run `npm ci` to install dependencies.
 2. Run `npm run build` to validate the build.
 3. Run `npm test` to run the test suite.
 
 ### Template Link Verification During Review
-
 As part of pull request review, verify that repository and package links (for example in `README.md`, `package.json`, or other project metadata) match the current repository/project being worked on.
 
 When this template is used to create a new repository, reviewers should explicitly confirm that inherited links have been updated to the new repository and package coordinates.
 
 ## npm Scripts
-
 - `lint:js`: Runs ESLint with the JavaScript-only configuration (`eslint.config.js.mjs`).
 - `lint:ts`: Runs ESLint with the TypeScript configuration (`eslint.config.ts.mjs`).
 - `lint:all`: Runs both `lint:js` and `lint:ts` in sequence.
@@ -45,29 +44,24 @@ When this template is used to create a new repository, reviewers should explicit
 - `prepack`: Automatically runs `npm run build` before packing.
 
 ## GitHub Actions CI
-
-- **`npm-test.yml`**: Triggered on push and pull request to `main`, and manually via `workflow_dispatch`. Runs `npm ci`, `npm run lint:all`, `npm run build`, and `npm run test` on Node.js 22.22.x and 24.x.
+- **`npm-test.yml`**: Triggered on push and pull request to `main` and `release/**` branches, and manually via `workflow_dispatch`. Runs `npm ci`, `npm run lint:all`, `npm run build`, and `npm run test` on Node.js 22.22.x and 24.x.
 - **`npm-publish.yml`**: Manually triggered via `workflow_dispatch` with a required `release_tag` input. Runs lint, build, and test on Node.js 24.x, then publishes to npm with the specified tag.
+- **`gh-pages-jekyll.yml`**: Builds the Jekyll site in `docs/` and deploys it to GitHub Pages. Triggered on push to `main` and manually via `workflow_dispatch`.
 
 ## Security and Dependency Management
-
-- **CodeQL**: Configured via `.github/workflows/codeql.yml` for automated security analysis.
-- **Dependabot**: Configured via `.github/dependabot.yml` for monthly npm and GitHub Actions dependency updates, targeting the `main` branch.
+- **CodeQL**: Configured via `.github/workflows/codeql.yml` for automated security analysis. Analyzes the `actions`, `javascript-typescript`, and `ruby` languages, and runs on push and pull request to `main` and `release/**` branches, on a monthly schedule, and manually via `workflow_dispatch`.
+- **Dependabot**: Configured via `.github/dependabot.yml` for monthly dependency updates targeting the `main` branch, covering the npm, GitHub Actions, and Bundler ecosystems.
 
 ## Development Guidelines
-
 Keep changes scoped to existing files unless a task explicitly requires scaffolding project code.
 
 ### TypeScript Conventions
-
 The project uses strict TypeScript settings (`strict`, `noImplicitAny`, `noUnusedLocals`, etc.) targeting ES2022 with `moduleResolution: bundler`.
 
 #### tsdown Build Output
-
 This project uses `tsdown` to bundle and emit declaration files. When the output format is `esm`, tsdown emits format-specific file extensions: `.mjs` for the bundle and `.d.mts` for the declaration file, regardless of whether the source files use the `.ts` or `.mts` extension. The `types`, `module`, `main`, and `exports` fields in `package.json` should always reference these `.mjs`/`.d.mts` paths (e.g., `./_dist/index.mjs` and `./_dist/index.d.mts`).
 
 #### Static Classes
-
 Static utility classes must:
 - Have a `private constructor()` that throws an `Error` to prevent instantiation
 - Include a JSDoc `@throws` on the constructor documenting the instantiation error
@@ -80,12 +74,10 @@ Static utility classes must:
 - Prefer `@returns` (not `@return`) in TSDoc comments.
 
 #### Formatting Rules
-
 - Keep formatting compatible with the repository ESLint configurations in `eslint.config.js.mjs` and `eslint.config.ts.mjs`.
 - Do not introduce formatting-only tooling or workflow changes unless the task explicitly requires them.
 
 ### Documentation Comment Preferences
-
 When writing or reviewing code, follow these documentation standards for maximum compatibility:
 
 - **Use `@returns` instead of `@return`**: Always use `@returns` in documentation comments for compatibility with documentation generators.
@@ -129,7 +121,6 @@ Place annotations in the following order for consistency and readability:
 Include other relevant tags (such as `@template`, `@type`) after the above, as appropriate for the context.
 
 ### File Headers
-
 All source files must include the MIT License copyright header at the top:
 
 ```typescript
@@ -155,7 +146,6 @@ All source files must include the MIT License copyright header at the top:
 ```
 
 ## Directory Structure
-
 ```
 src/
   hello-world/      # HelloWorld example module
@@ -164,42 +154,46 @@ src/
   index.ts          # Package entry point (re-exports all modules)
 test/
   hello-world/      # Tests for the HelloWorld module
-_dist/              # Build output — generated by tsdown (not committed)
-_coverage/          # Coverage output — generated by Vitest (not committed)
-_doc/               # Documentation output — generated by TypeDoc (not committed)
+_dist/              # Build output - generated by tsdown (not committed)
+_coverage/          # Coverage output - generated by Vitest (not committed)
+_doc/               # Documentation output - generated by TypeDoc (not committed)
 ```
 
 ## Documentation and GitHub Pages
-
-- `README.md` and `docs/index.md` (if present) should stay in sync for shared content, but they are not expected to be identical. Expected differences include Jekyll front matter, file-specific introductory or heading sections, footer or copyright text, and internal link differences. Any addition, removal, or update to shared sections must be applied consistently to both files.
+- `README.md` and `docs/index.md` should stay in sync for shared content, but they are not expected to be identical. Expected differences include Jekyll front matter, file-specific introductory or heading sections, footer or copyright text, and internal link differences. Any addition, removal, or update to shared sections must be applied consistently to both files.
 
 ### TypeDoc Configuration
+- API docs are generated with TypeDoc (`npm run docs`) using `typedoc.json`.
+- TypeDoc entry points are intentionally pointed to module-level index files (e.g., `./src/hello-world/index.ts`) rather than the root package entry point (e.g., `./src/index.ts`). This is done purposefully to maintain module-level organization in the generated documentation output. Do not change TypeDoc entry points to the root package entry point.
 
-TypeDoc entry points are intentionally pointed to module-level index files (e.g., `./src/hello-world/index.ts`) rather than the root package entry point (e.g., `./src/index.ts`). This is done purposefully to maintain module-level organization in the generated documentation output. Do not change TypeDoc entry points to the root package entry point.
+### Release Documentation
+- Release documentation organized in `docs/releases/...` is maintained manually and not generated by any automated process.
+- Release docs follow the directory structure: `docs/releases/v{major}.x/v{major}.{minor}.x/v{version-prefix}.x/{full-version}/doc/`, where `{version-prefix}` includes the major, minor, patch, and any pre-release type identifier (e.g., `v0.1.0-alpha` for versions like `v0.1.0-alpha.0`).
+
+### Jekyll Build
+- The Jekyll build uses the `jekyll-relative-links` plugin (configured in `docs/_config.yml`), which automatically converts relative `.md` links in `docs/` markdown files to their rendered `.html` paths. For example, `./portfolio-skills.md` in `docs/index.md` resolves to `portfolio-skills.html` on the published site. Use `.md` relative links within `docs/` source files; the build process will convert them correctly.
 
 ## Portfolio Page Generation and Maintenance
-
-The guidance in this section applies only when `docs/portfolio-skills.md` is present or intentionally being created.
-
-Use the following prompt template when generating or updating the `docs/portfolio-skills.md` page — for example, when a new project is started, when key dependencies or tooling change, or when the project's capabilities, functionality, or implementation evolve.
+- The portfolio skills page for this repository lives at `docs/portfolio-skills.md` and is published through the Jekyll site under `docs/`.
+- Evidence links in `docs/portfolio-skills.md` should always point to the `main` branch, even when the page is updated from another branch.
+- The guidance in this section applies only when `docs/portfolio-skills.md` is present or intentionally being created.
 
 ### Prompt Template
+Use the following prompt template when generating or updating the `docs/portfolio-skills.md` page; for example, when a new project is started, when key dependencies or tooling change, or when the project's capabilities, functionality, or implementation evolve.
 
 ````markdown
 You are generating/updating a technical portfolio page documenting a software project, template, starter, or implementation, following a specific evidence-based structure.
 
 ## Context
-
 Project Name: [PROJECT_NAME]
 Project Repository: [GITHUB_REPO_URL]
-Target Ref for Evidence Links: [TARGET_REF, e.g., main or the active branch]
+Target Ref for Evidence Links: main
 Primary Language(s): [e.g., TypeScript, JavaScript, Python]
 Primary Framework/Library: [e.g., Express.js, p5.js, React]
 Runtime: [e.g., Node.js, Python 3.11+]
 Key Technologies: [list 3-5 core tech choices]
 
 ## Structure Requirements
-
 Generate a Markdown file with these sections in order:
 
 1. **Front Matter** (Jekyll metadata):
@@ -269,6 +263,7 @@ Generate a Markdown file with these sections in order:
      - 1–2 claim sentences
      - An "Evidence:" section with direct GitHub links to source files
    - **Critical rule:** every claim must link to evidence that *directly* proves it
+      - Evidence does not need to enumerate every implementation instance in the repository. A representative selection that successfully demonstrates the claim is sufficient
      - If claiming "output to directory X", link config/build files, not just example files
      - If claiming "TypeScript configuration", link `tsconfig.*`, ESLint config, or build config files, not just `.ts` source files
      - If describing current project behavior, prefer evidence that reflects the current runtime/configured implementation path, not only an illustrative or older example
@@ -282,7 +277,6 @@ Generate a Markdown file with these sections in order:
    - Avoid defensive language; treat gaps as engineering decisions or next-step opportunities
 
 ## Tone & Style Guidelines
-
 - **Clarity:** Use precise technical language; avoid marketing speak
 - **Evidence-first:** Every statement in "Detailed Technical Notes" must be traceable
 - **Durability:** Generalize version/cadence claims unless you will actively maintain them
@@ -294,7 +288,6 @@ Generate a Markdown file with these sections in order:
 - **Scope discipline:** Do not overstate maturity, completeness, or production-readiness unless directly supported by evidence
 
 ## Common Pitfalls to Avoid
-
 - Claim/evidence mismatch (e.g., claiming workflow setup but only linking asset files)
 - Evidence that is technically relevant but not representative of the current runtime/configured implementation
 - Overstated scope (e.g., "full-stack" when really just frontend or backend)
@@ -305,17 +298,15 @@ Generate a Markdown file with these sections in order:
 - Capability bullets that list technologies without explaining engineering value
 
 ## Output Format
-
 Return the complete Markdown file ready to save as `docs/portfolio-skills.md` and publish. Ensure:
-- All links use the full GitHub repo URL with `/blob/[TARGET_REF]/` path format for files
-- Use `/tree/[TARGET_REF]/` for directory links when appropriate
+- All links use the full GitHub repo URL with `/blob/main/` path format for files
+- Use `/tree/main/` for directory links when appropriate
 - All code blocks and filenames use backticks
 - Proper Markdown heading hierarchy (`##` for sections, `###` for subsections)
 - No trailing whitespace; clean formatting
 - The page reads as evidence-based, concise, and professional
 
 ## Update Mode (when `docs/portfolio-skills.md` already exists)
-
 - Preserve any accurate, still-relevant sections and links that do not need changes
 - Update only sections where repository evidence, tooling, or capabilities changed
 - Keep front matter `date` from the original file; only update `modified_date`
@@ -323,18 +314,15 @@ Return the complete Markdown file ready to save as `docs/portfolio-skills.md` an
 ````
 
 ### How to Use This Template
-
 1. **Customize the bracketed fields** at the top with your project's info:
    - `[PROJECT_NAME]` → actual name
    - `[GITHUB_REPO_URL]` → full URL
-   - `[TARGET_REF]` → `main` or the branch/ref you want evidence links to point to
    - `[PRIMARY_LANGUAGE]` → language(s)
    - etc.
 
 2. **Paste the entire prompt into Copilot** (or your IDE's inline AI assistant).
 
 3. **Review the output** against this checklist:
-
    ```markdown
    - [ ] Section structure matches the portfolio page pattern
    - [ ] Overview is clear and not over-claiming scope
@@ -355,7 +343,6 @@ Return the complete Markdown file ready to save as `docs/portfolio-skills.md` an
    - Ask Copilot to add stronger evidence links where claims are currently under-supported
 
 ### Example Customization
-
 If you were documenting a new project called `my-ml-starter`:
 
 ```text
@@ -370,11 +357,9 @@ Key Technologies: PyTorch, pre-trained models, Docker, GitHub Actions
 Then paste the full template prompt with these values filled in.
 
 ## Portfolio Skills Page Review Instructions
-
 Use the following standards for Copilot code review and any agentic Copilot sessions reviewing changes to `docs/portfolio-skills.md`.
 
 ### Reusable Summary for This Portfolio Page Pattern
-
 These pages follow a strong, repeatable structure:
 
 1. **Concise project framing**
@@ -389,7 +374,6 @@ The core standard is: **every technical claim should be durable and traceable to
 ### What to Verify When Reviewing `docs/portfolio-skills.md`
 
 #### 1) Structure and completeness
-
 Ensure the page includes the required front matter and these sections (or equivalents):
 
 - Required Front Matter (`title`, `layout`, `date`, `modified_date`)
@@ -403,7 +387,6 @@ Ensure the page includes the required front matter and these sections (or equiva
 Why: this keeps pages consistent and easy to compare across projects.
 
 #### 2) Claim quality (accuracy + durability)
-
 Check that claims are:
 
 - **specific enough to be meaningful**
@@ -417,8 +400,7 @@ Risky pattern:
 - hardcoding exact versions/cadences unless you plan frequent updates
 
 #### 3) Evidence alignment (most important review item)
-
-For each claim in technical notes, verify linked evidence **directly supports** it.
+For each claim in technical notes, verify linked evidence **directly supports** it. Evidence does not need to enumerate every implementation instance in the repository. A representative selection that successfully demonstrates the claim is sufficient.
 
 Example rule:
 - If claim says output path is `_dist/`, evidence should include configuration files (e.g. `tsdown.config.ts`, `webpack.config.mjs`) or build scripts (`package.json`), not only asset files.
@@ -428,7 +410,6 @@ Also check whether the linked evidence is **representative of the project's curr
 This is a common high-impact review issue.
 
 #### 4) Portfolio tone calibration
-
 Look for balance between:
 
 - implementation facts ("what exists")
@@ -440,7 +421,6 @@ Avoid:
 - absolute claims not backed by links
 
 #### 5) Consistency across pages
-
 When reviewing a new page, compare with existing template pages for:
 
 - heading style/casing
@@ -452,7 +432,6 @@ When reviewing a new page, compare with existing template pages for:
 Consistency boosts professionalism at portfolio scale.
 
 #### 6) Gaps section quality
-
 A strong `Current Gaps / Future Improvements` section is:
 
 - concise (2–4 bullets)
@@ -466,7 +445,6 @@ Common high-value bullets:
 - deployment/docs not yet covered (if true)
 
 ### Quick Review Checklist
-
 Reuse the earlier template usage checklist as the canonical baseline review list. Use this section only for additional review-specific checks:
 
 ```markdown
@@ -477,7 +455,6 @@ Reuse the earlier template usage checklist as the canonical baseline review list
 ```
 
 ### Common Pitfalls to Catch Early
-
 - Claim/evidence mismatch (most frequent)
 - Hardcoded version/cadence details that will drift
 - "CI/CD" wording when no deployment pipeline is shown
@@ -487,7 +464,6 @@ Reuse the earlier template usage checklist as the canonical baseline review list
 - Mixed category labels in tooling inventory that blur automation, deployment, security, and dependency management
 
 ### One-Sentence Review Standard
-
 When you review the next page, use this rule:
 
 **"If a reader challenges any technical statement, can I point to an exact linked file that proves it, and is the wording likely to stay accurate over time?"**
