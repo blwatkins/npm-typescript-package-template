@@ -2,7 +2,7 @@
 title: "Demonstrated Portfolio Skills"
 layout: post
 date: 2026-06-17
-modified_date: 2026-06-17
+modified_date: 2026-06-21
 toc: true
 ---
 
@@ -10,25 +10,22 @@ toc: true
 This page is a technical record of the skills, tools, and engineering practices represented in the npm TypeScript Package Template project.
 
 ## Project Overview
-The [npm TypeScript Package Template](https://github.com/blwatkins/npm-typescript-package-template) is a starter repository for authoring and publishing [TypeScript](https://www.typescriptlang.org/) packages to [npm](https://www.npmjs.com/). It bundles an example source module with strict type-checking, an ESM build pipeline, automated testing, API documentation, and GitHub-based automation so a new package can begin with consistent tooling already in place. Key technologies include [TypeScript](https://www.typescriptlang.org/), [tsdown](https://tsdown.dev/), [Vitest](https://vitest.dev/), and [TypeDoc](https://typedoc.org/).
+The npm TypeScript Package Template is a starter repository for authoring and publishing TypeScript packages to npm. The project is maintained at [github.com/blwatkins/npm-typescript-package-template](https://github.com/blwatkins/npm-typescript-package-template) and built with TypeScript, tsdown (ESM bundling), and Vitest for testing. GitHub Actions automates linting, building, testing, and publishing.
 
 ## At a Glance
 - **Project Type:** Reusable project template / starter for npm packages
-- **Primary Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Primary Runtime:** [Node.js](https://nodejs.org/)
-- **Module Format:** ESM
-- **Build Pipeline:** [tsdown](https://tsdown.dev/)
-- **Quality Controls:** [ESLint](https://eslint.org/), strict TypeScript compiler settings
-- **Testing:** [Vitest](https://vitest.dev/)
-- **Documentation:** [TypeDoc](https://typedoc.org/) API reference and a [Jekyll](https://jekyllrb.com/) documentation site
-- **Automation:** [GitHub Actions](https://docs.github.com/actions) for lint/build/test and npm publishing
-- **Hosting & Deployment:** [GitHub Pages](https://pages.github.com/) via Jekyll
-- **Code Analysis / Security:** [CodeQL](https://codeql.github.com/) static analysis
-- **Dependency Automation:** [Dependabot](https://docs.github.com/code-security/dependabot) for npm, GitHub Actions, and Bundler ecosystems
+- **Primary Language:** TypeScript
+- **Primary Runtime:** Node.js
+- **Build Pipeline:** tsdown (ESM)
+- **Quality Controls:** ESLint
+- **Automation:** GitHub Actions
+- **Dependency Automation:** Dependabot
+- **Security Analysis:** CodeQL via GitHub Actions
+- **Documentation Pattern:** TypeDoc and Jekyll (GitHub Pages)
 
 ## Skills and Tooling Inventory
 - **Languages:** [TypeScript](https://www.typescriptlang.org/), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [Markdown](https://www.markdownguide.org/), [YAML](https://yaml.org/)
-- **Runtime & Libraries:** [Node.js](https://nodejs.org/en)
+- **Runtime:** [Node.js](https://nodejs.org/en)
 - **Testing:** [Vitest](https://vitest.dev/)
 - **Build / Bundling:** [tsdown](https://tsdown.dev/)
 - **Code Quality:** [ESLint](https://eslint.org/)
@@ -39,7 +36,7 @@ The [npm TypeScript Package Template](https://github.com/blwatkins/npm-typescrip
 - **Automation:** [GitHub Actions](https://github.com/features/actions)
 - **Hosting & Deployment:** [GitHub Pages](https://docs.github.com/en/pages), [npm Package Registry](https://www.npmjs.com/)
 - **Code Analysis / Security:** [CodeQL](https://codeql.github.com/)
-- **Dependency Automation:** [Dependabot](https://docs.github.com/en/code-security/concepts/supply-chain-security/about-dependabot-version-updates)
+- **Dependency Automation:** [Dependabot](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates)
 - **Development Utilities:** [npm CLI](https://docs.npmjs.com/cli)
 - **Environment Configuration:** Node.js version pinning via `.node-version`, plus Ruby version pinning for the Jekyll/Bundler docs site via `docs/.ruby-version`
 - **Development Environments:** [WebStorm](https://www.jetbrains.com/webstorm/), [Visual Studio Code](https://code.visualstudio.com/)
