@@ -1,5 +1,5 @@
 # npm TypeScript Package Template
-A template project for creating a [TypeScript](https://www.typescriptlang.org/) package for [npm](https://www.npmjs.com/).
+A template project for creating a TypeScript package for npm.
 
 ## Documentation
 - [Sample Documentation](https://blwatkins.github.io/npm-typescript-package-template/doc/index.html)
