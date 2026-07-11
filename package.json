@@ -1,5 +1,5 @@
 {
-  "name": "@blwat/template",
+  "name": "@blwatkins/template",
   "version": "1.0.0",
   "license": "MIT",
   "private": false,
@@ -55,6 +55,7 @@
     "@vitest/ui": "^4.1.8",
     "eslint": "^10.6.0",
     "eslint-plugin-es-x": "^9.7.0",
+    "eslint-plugin-jsdoc": "^63.0.13",
     "globals": "^17.7.0",
     "tsdown": "^0.22.3",
     "typedoc": "^0.28.19",
