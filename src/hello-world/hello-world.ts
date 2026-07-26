@@ -29,6 +29,7 @@ export class HelloWorld {
      *
      * @returns {void}
      *
+     * @public
      * @since 1.0.0
      */
     public hello(): void {

@@ -6,7 +6,7 @@ author:
   - Claude Code
   - GitHub Copilot
 date: 2026-06-17
-modified_date: 2026-07-10
+modified_date: 2026-07-26
 toc: true
 ---
 
@@ -46,90 +46,101 @@ The project is maintained at [blwatkins/npm-typescript-package-template](https:/
 - **Hosting & Deployment:** [GitHub Pages](https://docs.github.com/en/pages), [npm package registry](https://www.npmjs.com/), [GitHub package registry](https://docs.github.com/en/packages)
 - **Code Analysis / Security:** [CodeQL](https://codeql.github.com/)
 - **Dependency Automation:** [Dependabot](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates)
-- **Development Utilities:** [npm CLI](https://docs.npmjs.com/cli)
 - **Environment Configuration:** Node.js version pinning via `.node-version`, plus Ruby version pinning for the Jekyll/Bundler docs site via `docs/.ruby-version`
 - **Development Environments:** [WebStorm](https://www.jetbrains.com/webstorm/), [Visual Studio Code](https://code.visualstudio.com/)
 - **AI-Assisted Development:** [GitHub Copilot](https://github.com/features/copilot), [Claude Code](https://code.claude.com/docs/en/overview)
 
 ## Capability Record
 
-- Uses explicit package export and type declaration mappings to improve compatibility for ESM consumers and TypeScript tooling.
-- Applies strict TypeScript compiler settings and type-aware lint rules to improve early detection of implementation defects.
-- Automates lint, build, and test checks in GitHub Actions to improve change reliability before merge and release.
-- Produces API documentation and publishes a docs site workflow to improve discoverability and maintenance of project knowledge.
-- Runs CodeQL and Dependabot automation to improve baseline security and dependency hygiene over time.
+- **Documentation completeness enforced as a build gate** — treats undocumented and unresolvable API symbols as build failures rather than degraded output, so reference documentation cannot silently rot behind the code.
+- **ESM package contract and artifact layout** — maps every package resolution field to the exact artifacts the bundler emits, to improve resolution reliability for ESM consumers and TypeScript tooling.
+- **Strict typing and layered lint enforcement** — stacks type-aware, stylistic, and syntax-level rule sets over strict compiler settings to improve early detection of implementation defects.
+- **Node.js compatibility contract across supported release lines** — pins, declares, and continuously verifies the same runtime range, so the published compatibility claim is tested rather than asserted.
+- **Type-checked test suite with coverage reporting** — type-checks test sources in addition to executing them, catching type regressions that a runtime-only suite would pass over.
+- **Security scanning and dependency update automation** — runs scheduled code analysis and grouped dependency updates to improve baseline security and reduce dependency drift over time.
+- **Dual-registry publishing with OIDC trusted publishing** — gates release behind verification and authenticates to npm with a short-lived token, avoiding a long-lived publish credential in repository secrets.
 
 ## Detailed Technical Notes
 
 Each technical claim below is backed by a source link to the corresponding implementation or workflow configuration in the project repository.
 
+### Documentation completeness enforced as a build gate
+
+TypeDoc is configured to treat warnings as errors and to validate undocumented symbols, non-exported references, and broken links, so a missing doc comment fails documentation generation instead of producing incomplete output.
+A dedicated JSDoc lint layer applies to source files on top of that, and the project's validation script runs documentation generation alongside lint, build, and tests.
+
+**Evidence:**
+
+- [typedoc.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/typedoc.json)
+- [eslint.config.ts.mjs](https://github.com/blwatkins/npm-typescript-package-template/blob/main/eslint.config.ts.mjs)
+- [package.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/package.json)
+
 ### ESM package contract and artifact layout
 
-The package is configured as ESM and publishes built artifacts from `_dist`, including declaration files and a scoped export map.
-The build pipeline generates those outputs from `src/index.ts` using tsdown.
+The package is ESM-only, and the `types`, `module`, `main`, and `exports` fields all resolve to the `.mjs` bundle and `.d.mts` declaration file that tsdown emits for the `esm` output format.
+Build output is generated from a single entry point into `_dist`, and the published file list is limited to that directory plus package metadata.
 
 **Evidence:**
 
 - [package.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/package.json)
 - [tsdown.config.ts](https://github.com/blwatkins/npm-typescript-package-template/blob/main/tsdown.config.ts)
-
-### Utility module composition and re-export boundaries
-
-The public entry point re-exports domain modules, and each domain module re-exports dedicated types and classes.
-This keeps the package API small while still allowing clear internal organization by domain.
-
-**Evidence:**
-
 - [src/index.ts](https://github.com/blwatkins/npm-typescript-package-template/blob/main/src/index.ts)
-- [src/hello-world/index.ts](https://github.com/blwatkins/npm-typescript-package-template/blob/main/src/hello-world/index.ts)
 
-### Strict typing and lint enforcement model
+### Strict typing and layered lint enforcement
 
-TypeScript is configured with strict checks, including implicit-type and unused-code protections, to enforce predictable typing behavior.
-JavaScript and TypeScript lint configurations apply recommended and stricter rule sets for syntax safety and style consistency.
+TypeScript is configured with the full strict family alongside unused-code, implicit-return, implicit-override, and index-signature access checks.
+Linting layers type-aware `typescript-eslint` strict and stylistic rule sets over an ES2022 syntax restriction, with a separate configuration covering plain JavaScript files in the repository.
 
 **Evidence:**
 
 - [tsconfig.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/tsconfig.json)
-- [eslint.config.js.mjs](https://github.com/blwatkins/npm-typescript-package-template/blob/main/eslint.config.js.mjs)
 - [eslint.config.ts.mjs](https://github.com/blwatkins/npm-typescript-package-template/blob/main/eslint.config.ts.mjs)
+- [eslint.config.js.mjs](https://github.com/blwatkins/npm-typescript-package-template/blob/main/eslint.config.js.mjs)
 
-### CI verification gates
+### Node.js compatibility contract across supported release lines
 
-Lint, build, and test scripts are wired into local and CI workflows via `package.json`.
-The primary CI workflow runs `npm ci`, lint, build, and tests across supported Node.js release lines before changes are accepted.
-
-**Evidence:**
-
-- [package.json scripts](https://github.com/blwatkins/npm-typescript-package-template/blob/main/package.json)
-- [npm-test.yml](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.github/workflows/npm-test.yml)
-
-### Documentation generation and GitHub Pages publishing path
-
-API docs are generated with TypeDoc, while the documentation site is built from `docs/` using a Jekyll workflow and deployed to GitHub Pages.
-Release-specific docs are stored under a versioned directory structure in `docs/releases/...`.
+The supported Node.js range is declared in the package `engines` field and pinned for local development with a version file.
+Continuous integration runs the same checks against a matrix of those release lines, so the compatibility range the package advertises is the range that is actually exercised.
 
 **Evidence:**
 
-- [typedoc.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/typedoc.json)
-- [gh-pages-jekyll.yml](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.github/workflows/gh-pages-jekyll.yml)
-- [docs/index.md](https://github.com/blwatkins/npm-typescript-package-template/blob/main/docs/index.md)
-- [docs/releases directory](https://github.com/blwatkins/npm-typescript-package-template/tree/main/docs/releases)
+- [package.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/package.json)
+- [.node-version](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.node-version)
+- [npm-validate.yml](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.github/workflows/npm-validate.yml)
+
+### Type-checked test suite with coverage reporting
+
+Vitest type-checks test files against a dedicated TypeScript configuration in addition to executing them, so a type regression in test code fails the suite.
+Coverage is collected through the V8 provider into a separate output directory, with generated build, documentation, and site output excluded from measurement.
+
+**Evidence:**
+
+- [vitest.config.ts](https://github.com/blwatkins/npm-typescript-package-template/blob/main/vitest.config.ts)
+- [tsconfig.vitest.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/tsconfig.vitest.json)
+- [package.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/package.json)
 
 ### Security scanning and dependency update automation
 
-Security analysis is automated with a dedicated CodeQL workflow covering Actions and repository code languages.
-Dependency updates are automated with Dependabot for npm, GitHub Actions, and Bundler ecosystems, and package publishing uses trusted publishing permissions.
+CodeQL analysis runs on pushes and pull requests to the release branches and on a recurring schedule, covering workflow definitions, JavaScript and TypeScript source, and the Ruby toolchain behind the documentation site.
+Dependabot maintains npm, GitHub Actions, and Bundler dependencies on a scheduled cadence, with version and security updates grouped separately to keep review batches small.
 
 **Evidence:**
 
 - [codeql.yml](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.github/workflows/codeql.yml)
 - [dependabot.yml](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.github/dependabot.yml)
+
+### Dual-registry publishing with OIDC trusted publishing
+
+The publish workflow gates release behind a full validation job — lint, documentation generation, build, and tests — then publishes the same package to both the npm registry and GitHub Packages.
+The npm job requests a short-lived OIDC token through `id-token: write` for trusted publishing rather than storing a long-lived registry token in repository secrets.
+
+**Evidence:**
+
 - [package-publish.yml](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.github/workflows/package-publish.yml)
+- [package.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/package.json)
 
 ## Current Gaps / Future Improvements
 
 - The template ships only an example `HelloWorld` module; real package logic is intentionally left to the consumer.
-- Release documentation under `docs/releases/` is organized and maintained manually, with no automated changelog or release-notes generation.
-- Automated tests cover only the example module and are meant as a starting pattern rather than comprehensive coverage.
-- Publishing is triggered manually; there is no fully automated release-on-tag pipeline by design.
+- The test suite is a placeholder that exercises no assertions yet — Vitest, type checking, and coverage reporting are configured and running, but meaningful cases are left to the project built from this template.
+- Release documentation is organized manually and publishing is triggered by manual workflow dispatch, with no automated changelog or release-on-tag pipeline by design.
