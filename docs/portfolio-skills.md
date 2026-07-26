@@ -46,7 +46,6 @@ The project is maintained at [blwatkins/npm-typescript-package-template](https:/
 - **Hosting & Deployment:** [GitHub Pages](https://docs.github.com/en/pages), [npm package registry](https://www.npmjs.com/), [GitHub package registry](https://docs.github.com/en/packages)
 - **Code Analysis / Security:** [CodeQL](https://codeql.github.com/)
 - **Dependency Automation:** [Dependabot](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates)
-- **Development Utilities:** [npm CLI](https://docs.npmjs.com/cli)
 - **Environment Configuration:** Node.js version pinning via `.node-version`, plus Ruby version pinning for the Jekyll/Bundler docs site via `docs/.ruby-version`
 - **Development Environments:** [WebStorm](https://www.jetbrains.com/webstorm/), [Visual Studio Code](https://code.visualstudio.com/)
 - **AI-Assisted Development:** [GitHub Copilot](https://github.com/features/copilot), [Claude Code](https://code.claude.com/docs/en/overview)
@@ -107,7 +106,7 @@ Continuous integration runs the same checks against a matrix of those release li
 
 - [package.json](https://github.com/blwatkins/npm-typescript-package-template/blob/main/package.json)
 - [.node-version](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.node-version)
-- [npm-test.yml](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.github/workflows/npm-test.yml)
+- [npm-validate.yml](https://github.com/blwatkins/npm-typescript-package-template/blob/main/.github/workflows/npm-validate.yml)
 
 ### Type-checked test suite with coverage reporting
 
@@ -132,7 +131,7 @@ Dependabot maintains npm, GitHub Actions, and Bundler dependencies on a schedule
 
 ### Dual-registry publishing with OIDC trusted publishing
 
-The publish workflow gates release behind a lint, build, and test job, then publishes the same package to both the npm registry and GitHub Packages.
+The publish workflow gates release behind a full validation job — lint, documentation generation, build, and tests — then publishes the same package to both the npm registry and GitHub Packages.
 The npm job requests a short-lived OIDC token through `id-token: write` for trusted publishing rather than storing a long-lived registry token in repository secrets.
 
 **Evidence:**
