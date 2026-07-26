@@ -34,6 +34,7 @@ The two documents serve overlapping audiences and should stay consistent: when y
 - `npm run test:coverage` - run Vitest with V8 coverage reporting
 - `npm run docs` - generate API documentation with TypeDoc
 - `npm run prepack` - build the package before packing or publishing
+- `npm run validate` - run lint, documentation generation, build, and tests in sequence
 
 ## GitHub Actions CI
 
@@ -161,6 +162,14 @@ The following preferences require manual review since no ESLint rule can check t
 Expected differences include Jekyll front matter, file-specific introductory or heading sections, footer or copyright text, and internal link differences.
 Any addition, removal, or update to shared sections must be applied consistently to both files.
 
+### Markdown Formatting
+
+These rules apply to every Markdown file in the repository, including `README.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, and all files under `docs/`.
+
+- Indent a list item's nested content by the width of its parent marker: 2 spaces under `- `, 3 spaces under `1. `. Under-indenting by even one space detaches the content from the list item and splits the list in two. This applies to nested lists, paragraphs, and code fences alike.
+- A single file may need both widths, since the required indent comes from each item's own marker. Do not normalize a file to one indent width.
+- When a fenced code block sits inside a list item, indent the opening fence to the item's content column. The closing fence's indentation does not affect nesting, so match it to the opening fence for readability rather than correctness.
+
 ### Jekyll Build
 
 The Jekyll build uses the `jekyll-relative-links` plugin (configured in `docs/_config.yml`), which automatically converts relative `.md` links in `docs/` markdown files to their rendered `.html` paths.
@@ -193,7 +202,9 @@ Use `.md` relative links within `docs/` source files; the build process will con
 
 ### Validation Steps
 
-Run in order: `npm ci`, `npm run lint:all`, `npm run build`, `npm test`. See the ["npm Scripts" section](#npm-scripts) for details on each command.
+Run `npm ci`, then `npm run validate`, which runs lint, documentation generation, build, and tests in sequence.
+The documentation step is part of validation because TypeDoc is configured to treat warnings as errors, so an undocumented symbol or an unresolved link fails the run.
+See the ["npm Scripts" section](#npm-scripts) for details on each command.
 
 ### Link Verification
 
@@ -398,8 +409,8 @@ Generate a Markdown file with these sections in order:
    - Begin with: "Each technical claim below is backed by a source link to the corresponding implementation or workflow configuration in the project repository."
    - Create one subsection per `Capability Record` bullet, 5–7 total, in the same order, with headings that exactly match the bullet labels
    - Each subsection contains:
-      - 1–2 claim sentences
-      - An "Evidence:" section with direct GitHub links to source files
+     - 1–2 claim sentences
+     - An "Evidence:" section with direct GitHub links to source files
    - **Critical rule:** every claim must link to evidence that *directly* proves it
      - Evidence does not need to enumerate every implementation instance in the repository. A representative selection that successfully demonstrates the claim is sufficient
      - If claiming "output to directory X", link config/build files, not just example files
@@ -436,6 +447,7 @@ Generate a Markdown file with these sections in order:
 - Inconsistent tool terminology across pages (e.g., `CI/CD` vs `Automation`, `Code Analysis / Security`, `Dependency Automation`)
 - Mixed inventory categories that blur automation, deployment, security, and dependency management
 - Capability bullets that list technologies without explaining engineering value
+- Unrelated highlights merged under one heading to stay within the count, instead of dropping the lowest-ranked highlight
 
 ## Output Format
 
@@ -626,6 +638,7 @@ Reuse the earlier template usage checklist as the canonical baseline review list
 - Missing limitations section
 - Evidence is technically relevant but not representative of the current runtime/configured implementation
 - Mixed category labels in tooling inventory that blur automation, deployment, security, and dependency management
+- Unrelated highlights merged under one heading to stay within the count, instead of dropping the lowest-ranked highlight
 
 #### One-Sentence Review Standard
 
