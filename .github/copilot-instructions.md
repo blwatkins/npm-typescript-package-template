@@ -11,6 +11,19 @@ This repository maintains a companion `CLAUDE.md` at the repository root alongsi
 The two documents serve overlapping audiences and should stay consistent: when you update guidance in `.github/copilot-instructions.md` that also applies to `CLAUDE.md`, mirror the change there, and vice versa.
 `CLAUDE.md` is intentionally a concise pointer to this file; this file remains the canonical, detailed source of conventions.
 
+## Using This File in a Project Created From This Template
+
+This file ships with the template and is intended to be adapted, not copied verbatim.
+When starting a new project from this template, update the following before relying on the guidance below:
+
+- **Project Overview**, **Tech Stack**, and **Directory Structure** — replace with the new project's details
+- **File Headers** — replace the copyright holder name and starting year
+- **GitHub Repository Topics** — replace the repository link in that step with the new repository
+- **Portfolio Page Generation and Maintenance** — replace the project name and repository URL in the prompt template's Context block
+- **npm Scripts** and **GitHub Actions CI** — prune entries for any scripts or workflows the new project does not keep
+
+Guidance that is intentionally project-independent — Markdown Formatting, Documentation Comment Preferences, the portfolio highlight selection criteria, and the Pre-Merge and Release Review process — should carry over unchanged.
+
 ## Tech Stack
 
 - **Language:** TypeScript
@@ -42,8 +55,8 @@ The two documents serve overlapping audiences and should stay consistent: when y
 |---|---|---|---|
 | `codeql.yml` | CodeQL | Push/PR to `main` and `release/**`, manual, monthly schedule | Runs CodeQL security analysis for `actions`, `javascript-typescript`, and `ruby` |
 | `gh-pages-jekyll.yml` | Deploy GitHub Pages with Jekyll | Push to `main`, manual | Builds and deploys the `docs/` directory to GitHub Pages |
-| `package-publish.yml` | npm and GitHub Package Publish | Manual (`workflow_dispatch`) | Lints, builds, tests, then publishes to npm and GitHub Packages; requires `release_tag` input and uses `id-token: write` trusted publishing permissions for the npm publish job |
-| `npm-test.yml` | npm Lint, Build, and Test | Push/PR to `main` and `release/**`, manual | Runs lint, build, and tests across supported Node.js versions |
+| `package-publish.yml` | npm and GitHub Package Publish | Manual (`workflow_dispatch`) | Runs `npm run validate` (lint, documentation generation, build, and tests), then publishes to npm and GitHub Packages; requires `release_tag` input and uses `id-token: write` trusted publishing permissions for the npm publish job |
+| `npm-validate.yml` | npm Validate | Push/PR to `main` and `release/**`, manual | Runs `npm run validate` (lint, documentation generation, build, and tests) across supported Node.js versions |
 
 ## Directory Structure
 
@@ -135,6 +148,14 @@ All source files must include the MIT License copyright header at the top.
 - Keep formatting compatible with the repository ESLint configurations in `eslint.config.js.mjs` and `eslint.config.ts.mjs`.
 - Do not introduce formatting-only tooling or workflow changes unless the task explicitly requires them.
 
+### Markdown Formatting
+
+These rules apply to every Markdown file in the repository, including `README.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, and all files under `docs/`.
+
+- Indent a list item's nested content by the width of its parent marker: 2 spaces under `- `, 3 spaces under `1. `. Under-indenting by even one space detaches the content from the list item and splits the list in two. This applies to nested lists, paragraphs, and code fences alike.
+- A single file may need both widths, since the required indent comes from each item's own marker. Do not normalize a file to one indent width.
+- When a fenced code block sits inside a list item, indent the opening fence to the item's content column. The closing fence's indentation does not affect nesting, so match it to the opening fence for readability rather than correctness.
+
 ### Documentation Comment Preferences
 
 Most documentation comment conventions are enforced automatically by `eslint.config.ts.mjs`.
@@ -161,14 +182,6 @@ The following preferences require manual review since no ESLint rule can check t
 `README.md` and `docs/index.md` should stay in sync for shared content, but they are not expected to be identical.
 Expected differences include Jekyll front matter, file-specific introductory or heading sections, footer or copyright text, and internal link differences.
 Any addition, removal, or update to shared sections must be applied consistently to both files.
-
-### Markdown Formatting
-
-These rules apply to every Markdown file in the repository, including `README.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, and all files under `docs/`.
-
-- Indent a list item's nested content by the width of its parent marker: 2 spaces under `- `, 3 spaces under `1. `. Under-indenting by even one space detaches the content from the list item and splits the list in two. This applies to nested lists, paragraphs, and code fences alike.
-- A single file may need both widths, since the required indent comes from each item's own marker. Do not normalize a file to one indent width.
-- When a fenced code block sits inside a list item, indent the opening fence to the item's content column. The closing fence's indentation does not affect nesting, so match it to the opening fence for readability rather than correctness.
 
 ### Jekyll Build
 
@@ -343,8 +356,9 @@ Key Technologies: [list 3-5 core tech choices]
 Generate a Markdown file with these sections in order:
 
 1. **Front Matter** (Jekyll metadata):
-   - title: "[PROJECT_NAME] - Demonstrated Portfolio Skills"
+   - title: "Demonstrated Portfolio Skills"
    - layout: post
+   - author: list of contributors (people and AI assistants) credited on the page
    - date: [CREATION_DATE in YYYY-MM-DD]
    - modified_date: [TODAY_DATE in YYYY-MM-DD]
    - toc: true
@@ -538,7 +552,8 @@ The core standard is: **every technical claim should be durable and traceable to
 
 Ensure the page includes the required front matter and these sections (or equivalents):
 
-- Required Front Matter (`title`, `layout`, `date`, `modified_date`)
+- Required Front Matter (`title`, `layout`, `author`, `date`, `modified_date`, `toc`)
+- `About This Page`
 - `Project Overview`
 - `At a Glance`
 - `Skills and Tooling Inventory`
