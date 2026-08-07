@@ -9,8 +9,7 @@ Provides an example source structure, build tooling, documentation generation, a
 
 This repository maintains a companion `CLAUDE.md` at the repository root alongside this file.
 This file holds the guidance itself; `CLAUDE.md` is a map of where that guidance lives and does not repeat its rules.
-Add or change a convention here.
-A new convention placed under an existing section requires no change to `CLAUDE.md`.
+Add or change a convention here, not in `CLAUDE.md`; a new convention placed under an existing section requires no change to `CLAUDE.md`.
 Update `CLAUDE.md` when the map changes: a new or renamed section that `CLAUDE.md` links to, or a change to the project summary, npm scripts, generated output directories, or the [Pre-Merge and Release Review](#pre-merge-and-release-review) step list.
 
 ## Using This File in a Project Created From This Template
@@ -24,7 +23,7 @@ When starting a new project from this template, update the following before rely
 - **Portfolio Page Generation and Maintenance** — replace the project name and repository URL in the prompt template's Context block
 - **npm Scripts** and **GitHub Actions CI** — prune entries for any scripts or workflows the new project does not keep
 
-Everything else is intentionally project-independent and carries over unchanged, except where a section documents a tool or platform choice the new project does not keep.
+Sections not listed above are project-independent and carry over unchanged, unless the new project drops the tool or platform they document.
 
 ## Tech Stack
 
@@ -267,7 +266,7 @@ Editing in place preserves whatever was true when the sections were written; enf
 
 Verify that `CLAUDE.md` and `.github/copilot-instructions.md` are consistent with each other and reflect the current project state:
 
-- Guidance shared between the two files is mirrored
+- `CLAUDE.md` still maps accurately to this file
 - The [Directory Structure section](#directory-structure) accurately reflects the current `src/` module layout
 - Any new tooling, conventions, or workflows introduced on the branch are documented
 
