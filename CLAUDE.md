@@ -15,6 +15,9 @@ This repository maintains both `CLAUDE.md` and `.github/copilot-instructions.md`
 Add or change a convention in `.github/copilot-instructions.md`, not here.
 
 This file carries two kinds of content: links into `.github/copilot-instructions.md`, and a small number of facts restated in its own words where a link would cost more than it saves.
+Do not restate the individual topics a linked section covers; that list goes stale every time the section grows, and is the most common source of drift between the two files.
+Name the subject the section governs and link to it.
+
 Update this file when a change there invalidates either kind:
 
 - **A link stops resolving** — a section this file links to is renamed, moved, or removed.

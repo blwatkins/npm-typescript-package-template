@@ -12,12 +12,13 @@ This file holds the guidance itself; `CLAUDE.md` is a map of where that guidance
 Add or change a convention here, not in `CLAUDE.md`.
 
 `CLAUDE.md` carries two kinds of content: links into this file, and a small number of facts restated in its own words where a link would cost more than it saves.
+Do not restate the individual topics a linked section covers; that list goes stale every time the section grows, and is the most common source of drift between the two files.
+Name the subject the section governs and link to it.
+
 Update `CLAUDE.md` when a change here invalidates either kind:
 
 - **A link stops resolving** — a section `CLAUDE.md` links to is renamed, moved, or removed.
 - **A restated fact stops matching** — a summary, a name, or a list that `CLAUDE.md` spells out rather than links to has changed here.
-
-Do not restate an open enumeration of the topics a linked section covers; such a list goes stale every time that section grows, and is the most common source of drift between the two files.
 
 A new convention added under an existing section invalidates neither, and requires no change to `CLAUDE.md`.
 
