@@ -10,8 +10,8 @@ Provides an example source structure, build tooling, documentation generation, a
 This file is the single source of every convention in this repository.
 
 `CLAUDE.md` at the repository root holds no guidance of its own.
-It is a one-line `@` import of this file, which Claude Code expands into context at session start; GitHub Copilot reads this file directly.
-Both agents read the same text, so there is nothing to keep in sync and no reason to edit `CLAUDE.md`.
+It includes a one-line `@` import of this file, which Claude Code expands into context at session start; GitHub Copilot reads this file directly.
+Both agents read the same instruction set, so there is nothing to keep in sync and no need to restate conventions in `CLAUDE.md`.
 
 Add or change a convention here.
 Never add one to `CLAUDE.md`, and never summarize or link this file's sections from it — a summary is a second copy, and a second copy drifts.
