@@ -1,4 +1,4 @@
-# Copilot Instructions
+# Agent Instructions
 
 ## Project Overview
 
@@ -7,28 +7,20 @@ Provides an example source structure, build tooling, documentation generation, a
 
 ## Companion Instruction Files
 
-This repository maintains a companion `CLAUDE.md` at the repository root alongside this file.
-This file holds the guidance itself; `CLAUDE.md` is a map of where that guidance lives and does not repeat its rules — the sync rule below is the deliberate exception, since an agent that opens only one of the two files still needs it.
-Add or change a convention here, not in `CLAUDE.md`.
+This file is the single source of every convention in this repository.
 
-`CLAUDE.md` carries two kinds of content: links into this file, and a small number of facts restated in its own words where a link would cost more than it saves.
-Do not restate the individual topics a linked section covers; that list goes stale every time the section grows, and is the most common source of drift between the two files.
-Name the subject the section governs and link to it.
+`CLAUDE.md` at the repository root holds no guidance of its own.
+It is a one-line `@` import of this file, which Claude Code expands into context at session start; GitHub Copilot reads this file directly.
+Both agents read the same text, so there is nothing to keep in sync and no reason to edit `CLAUDE.md`.
 
-Update `CLAUDE.md` when a change here invalidates either kind:
+Add or change a convention here.
+Never add one to `CLAUDE.md`, and never summarize or link this file's sections from it — a summary is a second copy, and a second copy drifts.
 
-- **A link stops resolving** — a section `CLAUDE.md` links to is renamed, moved, or removed.
-- **A restated fact stops matching** — a summary, a name, or a list that `CLAUDE.md` spells out rather than links to has changed here.
-
-A new convention added under an existing section invalidates neither, and requires no change to `CLAUDE.md`.
-
-A new *section* is the one case that needs judgment, since a new section is not yet linked from anywhere.
-Add it to the map only if a contributor would need to know the section exists before starting work; leave it off if they would find it by reading this file once they reach the work it governs.
-When the call is close, leave `CLAUDE.md` alone and let the ["Instruction File Sync"](#3-instruction-file-sync) review step revisit it — an incomplete map costs less than a map that drifts into a second copy of this file.
+Keep JSDoc tags in this file inside backticks; Claude Code skips backticked and fenced content when parsing imports, but an unbackticked `@since` would be read as an import directive.
 
 ## Using This File in a Project Created From This Template
 
-This file and its companion `CLAUDE.md` ship with the template and are intended to be adapted, not copied verbatim.
+This file ships with the template and is intended to be adapted, not copied verbatim.
 When starting a new project from this template, update the following before relying on the guidance below:
 
 - **Project Overview**, **Tech Stack**, and **Directory Structure** — replace with the new project's details
@@ -36,7 +28,6 @@ When starting a new project from this template, update the following before rely
 - **GitHub Repository Topics** — replace the repository link in that step with the new repository
 - **Portfolio Page Generation and Maintenance** — replace the project name and repository URL in the prompt template's Context block
 - **npm Scripts** and **GitHub Actions CI** — prune entries for any scripts or workflows the new project does not keep
-- **Companion `CLAUDE.md`** — rewrite anything the map states in its own words (project summary, generated output directories, the review step list), and re-check every link it makes into this file, since sections renamed or pruned above will break its anchors
 
 Sections of this file not listed above are project-independent and carry over unchanged, unless the new project drops the tool or platform they document.
 
@@ -285,12 +276,10 @@ Editing in place preserves whatever was true when the sections were written; enf
 
 ### 3. Instruction File Sync
 
-Verify that `CLAUDE.md` and `.github/copilot-instructions.md` are consistent with each other and reflect the current project state:
+Verify that `.github/copilot-instructions.md` is consistent and reflects the current project state:
 
-- Every link in `CLAUDE.md` resolves to a section of this file that still exists under that name
-- Every fact `CLAUDE.md` restates rather than links to still matches this file
-- If the branch added a section to this file, decide whether it belongs on the map, per the ["Companion Instruction Files" section](#companion-instruction-files)
 - The [Directory Structure section](#directory-structure) accurately reflects the current source layout
+- The [npm Scripts](#npm-scripts) and [GitHub Actions CI](#github-actions-ci) lists match `package.json` and `.github/workflows/`, respectively
 - Any new tooling, conventions, or workflows introduced on the branch are documented
 
 ### 4. `package.json` Keywords
