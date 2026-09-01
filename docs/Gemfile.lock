@@ -79,7 +79,7 @@ GEM
       jekyll (>= 3.5, < 5.0)
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
-    jekyll-optional-front-matter (0.3.2)
+    jekyll-optional-front-matter (0.3.3)
       jekyll (>= 3.0, < 5.0)
     jekyll-relative-links (0.7.0)
       jekyll (>= 3.3, < 5.0)
@@ -223,7 +223,7 @@ CHECKSUMS
   jekyll-gfm-admonitions (1.4.4) sha256=3f68edb0046abe71ad300a92ec02146b6dd1e7c6313eb91fce3302310b2289d0
   jekyll-github-metadata (2.16.1) sha256=4cf29988bdaf24774a7bc07fae71e54424ddfaa2895f742d8fa3036d0db65b4c
   jekyll-minima (3.0.0.pre20220104) sha256=7f53d91519cffb203f2dbcaf2945eba225135e05d814d4b2d5f51b10bd856113
-  jekyll-optional-front-matter (0.3.2) sha256=ecdc061d711472469fcf04da617653b553e914c038a17df3b6a5f6f92aeb761b
+  jekyll-optional-front-matter (0.3.3) sha256=fc96976ffaa5515b3ad7d553199011aa98782c13694dfbd1a6278ede88212a6e
   jekyll-relative-links (0.7.0) sha256=831e54c348eeae751845c0d4ac4b244bd73b664341f0e8c9f1803b16f4570835
   jekyll-remote-theme (0.5.1) sha256=364a441273f7fb5a009aac0c7e0d9a75b8dd2160b48ebaac16c3bc4086474b0a
   jekyll-sass-converter (1.5.2) sha256=53773669e414dc3bb070113befacb808576025a28cfa4a4accc682e90a9c1101
