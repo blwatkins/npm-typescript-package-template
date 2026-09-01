@@ -93,7 +93,7 @@ GEM
       sass (~> 3.4)
     jekyll-seo-tag (2.9.0)
       jekyll (>= 3.8, < 5.0)
-    jekyll-titles-from-headings (0.5.3)
+    jekyll-titles-from-headings (0.5.4)
       jekyll (>= 3.3, < 5.0)
     jekyll-toc (0.19.0)
       jekyll (>= 3.9)
@@ -228,7 +228,7 @@ CHECKSUMS
   jekyll-remote-theme (0.5.1) sha256=364a441273f7fb5a009aac0c7e0d9a75b8dd2160b48ebaac16c3bc4086474b0a
   jekyll-sass-converter (1.5.2) sha256=53773669e414dc3bb070113befacb808576025a28cfa4a4accc682e90a9c1101
   jekyll-seo-tag (2.9.0) sha256=0260015a8e1df9bf195cdfb0c675b7b2883fd8cbf12556e1c1cbe36a831c6852
-  jekyll-titles-from-headings (0.5.3) sha256=77366754e361ea7b5d87881f5b1380835f5ce910c240a4d9ac2d7afe86d28481
+  jekyll-titles-from-headings (0.5.4) sha256=d5e43a5690f1e5cf541543e33501def1346b34acca7ce740ab74484e5dd926b0
   jekyll-toc (0.19.0) sha256=8a8270f7e8e3d849e2035710b1713d0af5e2185a4bfaca70f9192ecf5ac50668
   jekyll-watch (2.2.1) sha256=bc44ed43f5e0a552836245a54dbff3ea7421ecc2856707e8a1ee203a8387a7e1
   json (2.19.9) sha256=9b9025b7cdddafa38d316eca0b2358488e42d417045c1b90d216a9fefe46b79a
