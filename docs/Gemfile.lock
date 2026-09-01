@@ -64,7 +64,7 @@ GEM
       jekyll (>= 3.9, < 4.0)
       jekyll-commonmark (~> 1.4.0)
       rouge (>= 2.0, < 5.0)
-    jekyll-default-layout (0.1.5)
+    jekyll-default-layout (0.2.0)
       jekyll (>= 3.0, < 5.0)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
@@ -218,7 +218,7 @@ CHECKSUMS
   jekyll-coffeescript (2.0.0) sha256=329c72fb62843056a5d6711514d4ff7f17a799169e88167d1d3a83ea1698d29d
   jekyll-commonmark (1.4.0) sha256=1731e658fe09ce040271e6878f83ad45bbf8d17b10ad03bf343546cca30f4844
   jekyll-commonmark-ghpages (0.5.1) sha256=d56722f23393e45625e6e1bac6d3c64bb5f5cdf6ca547338160536d61c27a4a4
-  jekyll-default-layout (0.1.5) sha256=c626be4e4a5deafca123539da2cd22ff873be350cafd4da134039efdf24320af
+  jekyll-default-layout (0.2.0) sha256=33a15feea08290930030c2ff693597c80be34bb620cef083c0e35b2a4496a644
   jekyll-feed (0.17.0) sha256=689aab16c877949bb9e7a5c436de6278318a51ecb974792232fd94d8b3acfcc3
   jekyll-gfm-admonitions (1.4.4) sha256=3f68edb0046abe71ad300a92ec02146b6dd1e7c6313eb91fce3302310b2289d0
   jekyll-github-metadata (2.16.1) sha256=4cf29988bdaf24774a7bc07fae71e54424ddfaa2895f742d8fa3036d0db65b4c
