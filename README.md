@@ -64,7 +64,7 @@ The full text of the license is included with the project source code.
 
 ## Sources and Technical Notes
 
-- [Demonstrated Portfolio Skills](https://blwatkins.github.io/npm-typescript-package-template/portfolio-skills.html)
+- [Resources and References](https://blwatkins.github.io/npm-typescript-package-template/resources-and-references.html)
 
 ## Thank Yous
 
