@@ -1,6 +1,6 @@
 ---
 title: "Releases"
-layout: post
+layout: custom-post
 author:
   - Brittni Watkins
 date: 2026-06-17
