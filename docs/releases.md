@@ -1,5 +1,5 @@
 ---
-title: "Releases"
+title: "Sample Releases"
 layout: custom-post
 author:
   - Brittni Watkins
