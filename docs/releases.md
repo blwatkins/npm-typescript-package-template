@@ -4,10 +4,10 @@ layout: custom-post
 author:
   - Brittni Watkins
 date: 2026-06-17
-modified_date: 2026-07-10
-tags:
-  - releases
+modified_date: 2026-09-03
 toc: true
+read_time: false
+description: "Sample past and current releases of the npm TypeScript package template."
 ---
 
 ## v1.x

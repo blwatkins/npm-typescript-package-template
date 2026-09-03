@@ -1,6 +1,7 @@
 ---
 title: "npm TypeScript Package Template"
 layout: page
+description: "A template project for creating a TypeScript package for npm."
 ---
 
 ## About This Project
