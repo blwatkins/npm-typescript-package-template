@@ -231,7 +231,7 @@ These rules apply to every YAML file in the repository, including `.github/depen
 
 - Enclose every string value in single quotes (e.g., `runs-on: 'ubuntu-latest'`, `interval: 'monthly'`, `- 'main'`), including values in flow sequences (`['import']`).
 - Use double quotes only when the string needs an escape sequence such as `\n`, since single-quoted YAML strings do not process escapes.
-- Leave keys, booleans, and numbers unquoted (e.g., `on:`, `cancel-in-progress: false`, `timeout-minutes: 360`).
+- Leave keys, booleans, numbers, and dates unquoted (e.g., `on:`, `cancel-in-progress: false`, `timeout-minutes: 360`, `date: 2026-10-23`).
 
 ### Documentation Comment Preferences
 
