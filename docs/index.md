@@ -1,7 +1,7 @@
 ---
-title: "npm TypeScript Package Template"
-layout: page
-description: "A template project for creating a TypeScript package for npm."
+title: 'npm TypeScript Package Template'
+layout: 'page'
+description: 'A template project for creating a TypeScript package for npm.'
 ---
 
 ## About This Project
@@ -18,7 +18,7 @@ A template project for creating a TypeScript package for npm.
 The source code of this project is licensed under the [MIT License](https://opensource.org/license/mit).
 The full text of the license is included with the project source code.
 
-## Project Status Badges
+## Project Links and Status Badges
 
 ### [npm](https://www.npmjs.com/package/@blwatkins/template)
 
@@ -36,12 +36,9 @@ The full text of the license is included with the project source code.
 
 ![Socket Score](https://badge.socket.dev/npm/package/@blwatkins/template)
 
-### [Bundlephobia](https://bundlephobia.com/package/@blwatkins/template)
+### Bundlephobia
 
-![Bundlephobia Tree Shaking](https://badgen.net/bundlephobia/tree-shaking/@blwatkins/template)
-![Bundlephobia Dependency Count](https://badgen.net/bundlephobia/dependency-count/@blwatkins/template)
-![Bundlephobia Minified](https://badgen.net/bundlephobia/min/@blwatkins/template)
-![Bundlephobia Minified + gzip](https://badgen.net/bundlephobia/minzip/@blwatkins/template)
+- [Bundlephobia - `@blwatkins/template`](https://bundlephobia.com/package/@blwatkins/template)
 
 ### [Package Phobia](https://packagephobia.com/result?p=%40blwatkins%2Ftemplate)
 
