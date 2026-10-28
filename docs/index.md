@@ -14,7 +14,7 @@ Follow these steps after creating a new repository from this template.
 The same steps appear in `README.md`, `docs/index.md`, and `.github/copilot-instructions.md`; keep all three copies identical until the final step removes them.
 
 1. In `package.json`, update `name`, `version`, `description`, `author`, `homepage`, `repository.url`, `bugs.url`, and `keywords` for the new package and repository.
-2. In `.github/workflows/package-publish.yml`, change the `scope` of the GitHub Packages job (`@blwatkins`) to the npm scope of the new package.
+2. In `.github/workflows/package-publish.yml`, change the `scope` of the GitHub Packages job (`@blwatkins`) to the GitHub account or organization that owns the new repository. GitHub Packages requires the package name's scope to match that owner. If the npm scope of the new package does not match it, remove the `publish-github` job instead, and remove GitHub Packages from the "Tech Stack" section and the `package-publish.yml` row of the "GitHub Actions CI" table in `.github/copilot-instructions.md`.
 3. In `tsdown.config.ts`, rename `globalName` for the new package. It only applies to IIFE or UMD output, so remove it and `outputOptions.globals` if the package will only ever ship ESM.
 4. Replace the `hello-world` example module:
    - Replace `src/hello-world/` and `test/hello-world/` with the package's own modules, and re-export each module from `src/index.ts`.
@@ -25,10 +25,10 @@ The same steps appear in `README.md`, `docs/index.md`, and `.github/copilot-inst
 7. In `README.md` and `docs/index.md`, update the title, description, documentation links, and every badge and link that names `@blwatkins/template` or `npm-typescript-package-template`.
 8. Remove the sample documentation:
    - Delete the contents of `docs/doc/` and `docs/releases/`.
-   - Remove the sample entries from `docs/releases.md`.
-   - Replace the content of `docs/resources-and-references.md`.
+   - Remove the sample entries from `docs/releases.md`, and update its front matter `author` and `description`.
+   - Replace the content of `docs/resources-and-references.md`, and update its front matter `author` and `description`.
 9. Update the owners in `.github/CODEOWNERS` and the accounts in `.github/FUNDING.yml`, or remove `FUNDING.yml`.
-10. Update the copyright holder and year in `LICENSE`, every file header, and `velocity-copyright-template.txt`.
+10. Update the copyright holder and year in `LICENSE`, every file header, `velocity-copyright-template.txt`, the footer of `README.md`, and `docs/_includes/footer.html`.
 11. Review `.github/copilot-instructions.md`:
     - Update the "Project Overview" section.
     - Decide whether to keep the shared error type, assertion, and type guard conventions. To keep them, add `@blwatkins/utils` as a dependency. To drop them, remove the sections that reference `@blwatkins/utils`.
