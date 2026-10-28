@@ -358,7 +358,6 @@ A page whose content did not change keeps its existing `modified_date`.
 - Tests live in the `test/` directory, with a folder structure that mirrors the source code in `src/`.
 - Shared test fixtures and helpers live under `test/utils`.
 - Vitest also type-checks test files at run time (in addition to executing them), configured via the `typecheck` block in `vitest.config.ts` against `tsconfig.vitest.json`.
-- `tsconfig.vitest.json` adds the Vitest globals (`describe`, `test`, `expect`, and so on) to the `test/` directory, and `eslint.config.ts.mjs` lints `test/` against it. The root `tsconfig.json` excludes `test/`, so the globals are not visible to `src/`.
 - Cross-cutting behavior that every member of a family of types must satisfy — for example, the custom error type contract, or the static class instantiation guard — is factored into a shared helper under `test/utils/` that emits its own `describe`/`test` blocks, and is called from each suite rather than duplicated per file.
 - Helper files use a `*-tests.ts` suffix (not `*.test.ts`) so Vitest does not collect them as suites directly.
 - Test files carry no explanatory comments. A `describe` title states what is under test and a `test` title states the case it covers, so a comment explaining either is bloat and a signal that the title needs the work instead. Exceptions to this rule include the deprecated banner, editor pragmas, warnings on data that must never change, and trailing comments on visible Unicode character entries that show the rendered character and its name.

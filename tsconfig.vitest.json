@@ -1,16 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "skipLibCheck": true,
-    "types": [
-      "node",
-      "vitest/globals"
-    ]
-  },
-  "include": [
-    "test/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "skipLibCheck": true
+  }
 }

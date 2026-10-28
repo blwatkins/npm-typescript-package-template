@@ -58,15 +58,5 @@
 
     "allowUnusedLabels": false,
     "allowUnreachableCode": false
-  },
-
-  "exclude": [
-    "node_modules",
-    "_compiled",
-    "_coverage",
-    "_dist",
-    "_doc",
-    "docs",
-    "test"
-  ]
+  }
 }
