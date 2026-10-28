@@ -4,6 +4,33 @@
 
 This repository contains a template project for creating a TypeScript package for npm.
 
+## New Package Steps
+
+Follow these steps after creating a new repository from this template.
+The same steps appear in `README.md`, `docs/index.md`, and `.github/copilot-instructions.md`; keep all three copies identical until the final step removes them.
+
+1. In `package.json`, update `name`, `version`, `description`, `author`, `homepage`, `repository.url`, `bugs.url`, and `keywords` for the new package and repository.
+2. In `.github/workflows/package-publish.yml`, change the `scope` of the GitHub Packages job (`@blwatkins`) to the GitHub account or organization that owns the new repository. GitHub Packages requires the package name's scope to match that owner. If the npm scope of the new package does not match it, remove the `publish-github` job instead, rename the workflow to drop "GitHub Package" from its `name`, and remove GitHub Packages from the "Tech Stack" section and from the name and description of the `package-publish.yml` row of the "GitHub Actions CI" table in `.github/copilot-instructions.md`.
+3. In `tsdown.config.ts`, rename `globalName` for the new package. It only applies to IIFE or UMD output, so remove it and `outputOptions.globals` if the package will only ever ship ESM.
+4. Replace the `hello-world` example module:
+   - Replace `src/hello-world/` and `test/hello-world/` with the package's own modules, and re-export each module from `src/index.ts`.
+   - Point the `entryPoints` in `typedoc.json` at each module's index file.
+   - Update the "Directory Structure" section of `.github/copilot-instructions.md`.
+5. In `typedoc.json`, update `navigationLinks` and `customFooterHtml`.
+6. In `docs/_config.yml`, update `title`, `description`, and `minima.social_links`. Leave the npm social link `url` as `'#'` until the first publish.
+7. In `README.md` and `docs/index.md`, update the title, description, documentation links, and every badge and link that names `@blwatkins/template` or `npm-typescript-package-template`.
+8. Remove the sample documentation:
+   - Delete the contents of `docs/doc/` and `docs/releases/`.
+   - Remove the sample entries from `docs/releases.md`, and update its front matter `author` and `description`.
+   - Replace the content of `docs/resources-and-references.md`, and update its front matter `author` and `description`.
+9. Update the owners in `.github/CODEOWNERS` and the accounts in `.github/FUNDING.yml`, or remove `FUNDING.yml`.
+10. Update the copyright holder and year in `LICENSE`, every file header, `velocity-copyright-template.txt`, the footer of `README.md`, and `docs/_includes/footer.html`.
+11. Review `.github/copilot-instructions.md`:
+    - Update the "Project Overview" section.
+    - Decide whether to keep the shared error type, assertion, and type guard conventions. To keep them, add `@blwatkins/utils` as a dependency. To drop them, remove the sections that reference `@blwatkins/utils`.
+12. Run `npm install` to regenerate `package-lock.json` for the new package name, then run `npm run validate`.
+13. Remove this "New Package Steps" section from `README.md`, `docs/index.md`, and `.github/copilot-instructions.md`.
+
 ## Companion Instruction Files
 
 This file is the single source of every convention in this repository.
@@ -44,7 +71,7 @@ Claude Code skips backticked and fenced content when parsing imports, but a bare
 |---|---|---|---|
 | `codeql.yml` | CodeQL | Push/PR to `main` and `release/**`, manual, monthly schedule | Runs CodeQL security analysis for `actions`, `javascript-typescript`, and `ruby` |
 | `gh-pages-jekyll.yml` | Deploy GitHub Pages with Jekyll | Push to `main`, manual | Builds and deploys the `docs/` directory to GitHub Pages |
-| `package-publish.yml` | npm and GitHub Package Publish | Manual (`workflow_dispatch`) | Runs `npm run validate` (lint, documentation generation, build, and tests), then publishes to npm and GitHub Packages; requires `release_tag` input and uses `id-token: write` trusted publishing permissions for the npm publish job |
+| `package-publish.yml` | npm and GitHub Package Publish | Manual (`workflow_dispatch`) | Runs `npm run validate` (lint, documentation generation, build, and tests), then publishes to npm and GitHub Packages; requires a `release_tag` input chosen from `alpha`, `beta`, `next`, or `latest` and uses `id-token: write` trusted publishing permissions for the npm publish job |
 | `npm-validate.yml` | npm Validate | Push/PR to `main` and `release/**`, manual | Runs `npm run validate` (lint, documentation generation, build, and tests) across supported Node.js versions |
 
 ## Directory Structure
@@ -198,6 +225,8 @@ The `types`, `module`, `main`, and `exports` fields in `package.json` should alw
 
 All source files must include the MIT License copyright header at the top.
 
+`velocity-copyright-template.txt` at the repository root contains a Velocity copyright notice template for JetBrains IDEs. Create a copyright profile in the IDE settings, paste the file's contents into its copyright text field, and select the profile for the project. The template preserves the original year and extends the year range when the copyright notice is updated in a later year.
+
 **Copyright year convention:** Use the original year the file was authored. If the file is subsequently modified in a later year, expand to a range (e.g., `2024-2026`). Do not change the starting year when editing an existing file.
 
 ```typescript
@@ -308,7 +337,7 @@ A page whose content did not change keeps its existing `modified_date`.
 ### TypeDoc Configuration
 
 - API docs are generated with TypeDoc (`npm run docs`) using `typedoc.json`.
-- TypeDoc entry points are intentionally pointed to module-level index files (e.g., `./src/number/index.ts`, `./src/random/index.ts`) rather than the root package entry point (e.g., `./src/index.ts`). This is done purposefully to maintain module-level organization in the generated documentation output. Do not change TypeDoc entry points to the root package entry point.
+- TypeDoc entry points are intentionally pointed to module-level index files (e.g., `./src/hello-world/index.ts`) rather than the root package entry point (e.g., `./src/index.ts`). This is done purposefully to maintain module-level organization in the generated documentation output. Do not change TypeDoc entry points to the root package entry point.
 
 ### Release Documentation
 
