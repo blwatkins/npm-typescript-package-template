@@ -225,7 +225,7 @@ The `types`, `module`, `main`, and `exports` fields in `package.json` should alw
 
 All source files must include the MIT License copyright header at the top.
 
-`velocity-copyright-template.txt` at the repository root is a JetBrains IDE copyright profile that generates this header and extends the year range when a file is edited in a later year. Import it as a copyright profile in the IDE settings to apply the header automatically.
+`velocity-copyright-template.txt` at the repository root contains a Velocity copyright notice template for JetBrains IDEs. Create a copyright profile in the IDE settings, paste the file's contents into its copyright notice field, and select the profile for the project. The template preserves the original year and extends the year range when the copyright notice is updated in a later year.
 
 **Copyright year convention:** Use the original year the file was authored. If the file is subsequently modified in a later year, expand to a range (e.g., `2024-2026`). Do not change the starting year when editing an existing file.
 
