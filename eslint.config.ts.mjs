@@ -249,6 +249,15 @@ export default defineConfig([
         }
     },
     {
+        files: ['test/**/*.ts'],
+        languageOptions: {
+            parserOptions: {
+                projectService: false,
+                project: './tsconfig.vitest.json'
+            }
+        }
+    },
+    {
         files: ['src/**/*.ts'],
         plugins: {
             jsdoc
