@@ -337,7 +337,7 @@ A page whose content did not change keeps its existing `modified_date`.
 ### TypeDoc Configuration
 
 - API docs are generated with TypeDoc (`npm run docs`) using `typedoc.json`.
-- TypeDoc entry points are intentionally pointed to module-level index files (e.g., `./src/hello-world/index.ts`) rather than the root package entry point (e.g., `./src/index.ts`). This is done purposefully to maintain module-level organization in the generated documentation output. Do not change TypeDoc entry points to the root package entry point.
+- TypeDoc entry points are intentionally pointed to each module's index file (`./src/<module>/index.ts`, as listed in `typedoc.json`) rather than the root package entry point (`./src/index.ts`). This is done purposefully to maintain module-level organization in the generated documentation output. Do not change TypeDoc entry points to the root package entry point.
 
 ### Release Documentation
 
