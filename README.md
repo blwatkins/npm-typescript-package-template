@@ -26,9 +26,8 @@ The same steps appear in `README.md`, `docs/index.md`, and `.github/copilot-inst
 11. Review `.github/copilot-instructions.md`:
     - Update the "Project Overview" section.
     - Decide whether to keep the shared error type, assertion, and type guard conventions. To keep them, add `@blwatkins/utils` as a dependency. To drop them, remove the sections that reference `@blwatkins/utils`.
-12. In the new repository's settings, set the GitHub Pages source to GitHub Actions, and configure npm trusted publishing for `package-publish.yml` on npmjs.com before the first publish.
-13. Run `npm install` to regenerate `package-lock.json` for the new package name, then run `npm run validate`.
-14. Remove this "New Package Steps" section from `README.md`, `docs/index.md`, and `.github/copilot-instructions.md`.
+12. Run `npm install` to regenerate `package-lock.json` for the new package name, then run `npm run validate`.
+13. Remove this "New Package Steps" section from `README.md`, `docs/index.md`, and `.github/copilot-instructions.md`.
 
 ## Documentation
 
