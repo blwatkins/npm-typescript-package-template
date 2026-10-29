@@ -39,7 +39,7 @@ The same steps appear in `README.md`, `docs/index.md`, and `.github/copilot-inst
 The source code of this project is licensed under the [MIT License](https://opensource.org/license/mit).
 The full text of the license is included with the project source code.
 
-## Project Status Badges
+## Project Links and Status Badges
 
 ### [npm](https://www.npmjs.com/package/@blwatkins/template)
 
