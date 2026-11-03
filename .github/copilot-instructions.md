@@ -302,7 +302,7 @@ The following preferences require manual review since no ESLint rule can check t
 - **Document version with `@since`:** Add `@since` to all public/exported members.
 - **Enclose boolean values in backticks:** Always use backticks for `true` and `false` in documentation comments.
 - **Use consistent tense and voice:** Write documentation in the present tense and active voice for clarity.
-- **Document default values:** For class fields, object properties, and module-level constants and variables that have a default or initial value, state the default via `@default` (e.g., `@default Math.random`).
+- **Document default values:** For class fields, object properties, and module-level constants and variables that have a default or initial value, state the default via `@default` (e.g., `@default Math.random`). Arrays do not take `@default`.
 - **Document default parameter values:** Indicate default values for parameters in the `@param` annotation.
 - **Annotate abstract/readonly/private/protected/override members:** Use `@abstract`, `@readonly`, `@private`, `@protected`, and `@override`, respectively, matching the corresponding TypeScript modifier. `eslint.config.ts.mjs` validates these tags are well-formed where present, but does not require their presence for a given modifier.
 - **Scope `@public` to class members:** Apply `@public` to public class members and constructors. Do not add `@public` to the doc comment of an exported class, interface, type, enum, or constant itself, or to interface properties — in both cases the declaration is already the visibility signal.
