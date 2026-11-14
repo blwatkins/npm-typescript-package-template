@@ -27,7 +27,7 @@
  */
 export class HelloWorld {
     /**
-     * An example method.
+     * Logs a greeting to the console.
      *
      * @returns {void}
      *
